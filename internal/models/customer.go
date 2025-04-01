@@ -1,15 +1,16 @@
 package models
 
-import "time"
-
 type Customer struct {
-	ID        int       `gorm:"primaryKey;column:id"`
-	FirstName string    `gorm:"column:first_name"`
-	LastName  string    `gorm:"column:last_name"`
-	Email     string    `gorm:"column:email"`
-	Phone     string    `gorm:"column:phone"`
-	Address   string    `gorm:"column:address"`
-	Active    bool      `gorm:"column:active;default:true"`
-	CreatedAt time.Time `gorm:"column:created_at"`
-	UpdatedAt time.Time `gorm:"column:updated_at"`
+	ID       int    `gorm:"primaryKey;column:id"`
+	Username string `gorm:"column:username"`
+	FullName string `gorm:"column:full_name"`
+	Gender   string `gorm:"column:gender"`
+	Status   string `gorm:"column:status"`
+	Email    string `gorm:"column:email"`
+	Phone    string `gorm:"column:phone_number"`
+}
+
+// TableName overrides the default table name used by GORM for the Customer model.
+func (Customer) TableName() string {
+	return "customer"
 }

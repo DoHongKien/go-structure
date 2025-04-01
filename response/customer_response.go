@@ -16,18 +16,9 @@ type CustomerResponse struct {
 func MapCustomer(customer models.Customer) *CustomerResponse {
 	return &CustomerResponse{
 		ID:       customer.ID,
-		FullName: customer.LastName + " " + customer.FirstName,
+		FullName: customer.FullName,
 		Email:    customer.Email,
 		Phone:    customer.Phone,
-		Address:  customer.Address,
-		Active:   convertStatus(customer.Active),
-	}
-}
-
-func convertStatus(active bool) string {
-	if active {
-		return "Active"
-	} else {
-		return "InActive"
+		Active:   customer.Status,
 	}
 }
