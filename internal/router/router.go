@@ -1,8 +1,10 @@
 package router
 
 import (
-	"net/http"
-
+	"github.com/DoHongKien/go-structure/internal/controller"
+	dbinit "github.com/DoHongKien/go-structure/internal/init"
+	"github.com/DoHongKien/go-structure/internal/repo"
+	"github.com/DoHongKien/go-structure/internal/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,17 +12,25 @@ func NewRouter() *gin.Engine {
 
 	r := gin.Default()
 
-	v2 := r.Group("/api/v1")
+	mysqlDB := dbinit.InitMySQL()
+
+	// Initialize repositories
+	customerRepo := repo.NewCustomerRepository(mysqlDB)
+
+	// Initialize services
+	customerService := service.NewCustomerService(customerRepo)
+
+	// Initialize controllers
+	customerController := controller.NewCustomerController(customerService)
+
+	api := r.Group("/api/v1")
 	{
-		v2.GET("/users", PONG)
-		v2.GET("/users/:id", PONG)
+		customers := api.Group("/customers")
+		{
+			customers.GET("/", customerController.GetAllCustomers)
+			customers.GET("/:id", customerController.GetCustomerByID)
+		}
 	}
 
 	return r
-}
-
-func PONG(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
-	})
 }
