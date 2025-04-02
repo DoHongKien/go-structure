@@ -14,8 +14,8 @@ func NewCustomerService(repo *repo.CustomerRepository) *CustomerService {
 	return &CustomerService{repo: repo}
 }
 
-func (s *CustomerService) GetAllCustomers() ([]models.Customer, error) {
-	return s.repo.GetAllCustomers()
+func (s *CustomerService) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
+	return s.repo.GetAllCustomers(limit, offset)
 }
 
 func (s *CustomerService) GetCustomerByID(id int) (*models.Customer, error) {

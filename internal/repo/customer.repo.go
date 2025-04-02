@@ -14,9 +14,9 @@ func NewCustomerRepository(db *gorm.DB) *CustomerRepository {
 	return &CustomerRepository{db: db}
 }
 
-func (r *CustomerRepository) GetAllCustomers() ([]models.Customer, error) {
+func (r *CustomerRepository) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
 	var customers []models.Customer
-	err := r.db.Find(&customers).Error
+	err := r.db.Limit(limit).Offset(offset).Find(&customers).Error
 	if err != nil {
 		return nil, err
 	}

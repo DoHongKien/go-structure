@@ -29,6 +29,7 @@ func NewRouter() *gin.Engine {
 		{
 			customers.GET("/", customerController.GetAllCustomers)
 			customers.GET("/:id", customerController.GetCustomerByID)
+			customers.GET("/raw/:id", customerController.GetRawQueryCustomer)
 		}
 	}
 
