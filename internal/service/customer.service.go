@@ -6,22 +6,28 @@ import (
 	"github.com/DoHongKien/go-structure/internal/repo"
 )
 
-type CustomerService struct {
-	repo *repo.CustomerRepository
+type ICustomerService interface {
+	GetAllCustomers(limit, offset int) ([]models.Customer, error)
+	GetCustomerByID(id int) (*models.Customer, error)
+	GetRawQueryCustomer(id int) (*dto.CustomerRaw, error)
 }
 
-func NewCustomerService(repo *repo.CustomerRepository) *CustomerService {
-	return &CustomerService{repo: repo}
+type customerService struct {
+	repo repo.ICustomerRepository
 }
 
-func (s *CustomerService) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
+func NewCustomerService(repo repo.ICustomerRepository) ICustomerService {
+	return &customerService{repo: repo}
+}
+
+func (s *customerService) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
 	return s.repo.GetAllCustomers(limit, offset)
 }
 
-func (s *CustomerService) GetCustomerByID(id int) (*models.Customer, error) {
+func (s *customerService) GetCustomerByID(id int) (*models.Customer, error) {
 	return s.repo.GetCustomerByID(id)
 }
 
-func (s *CustomerService) GetRawQueryCustomer(id int) (*dto.CustomerRaw, error) {
+func (s *customerService) GetRawQueryCustomer(id int) (*dto.CustomerRaw, error) {
 	return s.repo.GetRawQueryCustomer(id)
 }

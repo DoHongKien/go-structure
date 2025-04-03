@@ -1,19 +1,19 @@
 package controller
 
 import (
-	"net/http"
 	"strconv"
 
 	"github.com/DoHongKien/go-structure/internal/service"
+	"github.com/DoHongKien/go-structure/pkg/response"
 	"github.com/gin-gonic/gin"
 )
 
 type CustomerController struct {
-	service *service.CustomerService
+	customerService service.ICustomerService
 }
 
-func NewCustomerController(service *service.CustomerService) *CustomerController {
-	return &CustomerController{service: service}
+func NewCustomerController(customerService service.ICustomerService) *CustomerController {
+	return &CustomerController{customerService: customerService}
 }
 
 func (c *CustomerController) GetAllCustomers(ctx *gin.Context) {
@@ -25,47 +25,42 @@ func (c *CustomerController) GetAllCustomers(ctx *gin.Context) {
 
 	offset, err := strconv.Atoi(ctx.Query("page"))
 	if err != nil {
-		offset = 0 // Default offset
+		offset = 1 // Default offset
 	}
 
-	customers, err := c.service.GetAllCustomers(limit, (offset-1)*limit)
+	customers, err := c.customerService.GetAllCustomers(limit, (offset-1)*limit)
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
 	}
-	ctx.JSON(http.StatusOK, customers)
+	response.SuccessResponse(ctx, response.ErrCodeSuccess, customers)
 }
 
 func (c *CustomerController) GetCustomerByID(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
 	}
-	customer, err := c.service.GetCustomerByID(id)
+	customer, err := c.customerService.GetCustomerByID(id)
 
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
 	}
 
-	ctx.JSON(http.StatusOK, customer)
+	response.SuccessResponse(ctx, response.ErrCodeSuccess, customer)
 }
 
 func (c *CustomerController) GetRawQueryCustomer(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
 	}
 
-	customer, err := c.service.GetRawQueryCustomer(id)
+	customer, err := c.customerService.GetRawQueryCustomer(id)
 
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
 	}
 
-	ctx.JSON(http.StatusOK, customer)
+	response.SuccessResponse(ctx, response.ErrCodeSuccess, customer)
 }

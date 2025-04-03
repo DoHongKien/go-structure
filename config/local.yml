@@ -16,3 +16,6 @@ logger:
   max_age: 7
   max_size: 1024
   compress: true
+jwt:
+  secret_key: hNsdQK8zfPFpnSnnqTmqX5aI94c3Npd/QdkkvQhHLI+q0VOpe1AJk9NEMgC8awfy
+  expire_time: 3600

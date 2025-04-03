@@ -5,8 +5,22 @@ import (
 	"gorm.io/gorm"
 )
 
-func SaveOrder(db *gorm.DB, order *models.Order) (*models.Order, error) {
-	err := db.Create(order).Error
+type IOrderRepository interface {
+	SaveOrder(order *models.Order) (*models.Order, error)
+	GetOrderByID(id int) (*models.Order, error)
+	GetAllOrders() ([]models.Order, error)
+}
+
+type orderRepository struct {
+	db *gorm.DB
+}
+
+func NewOrderRepository(db *gorm.DB) IOrderRepository {
+	return &orderRepository{db: db}
+}
+
+func (or *orderRepository) SaveOrder(order *models.Order) (*models.Order, error) {
+	err := or.db.Create(order).Error
 
 	if err != nil {
 		return nil, err
@@ -14,9 +28,9 @@ func SaveOrder(db *gorm.DB, order *models.Order) (*models.Order, error) {
 	return order, nil
 }
 
-func GetOrderByID(db *gorm.DB, id int) (*models.Order, error) {
+func (or *orderRepository) GetOrderByID(id int) (*models.Order, error) {
 	order := &models.Order{}
-	err := db.First(order, id).Error
+	err := or.db.First(order, id).Error
 
 	if err != nil {
 		return nil, err
@@ -25,9 +39,9 @@ func GetOrderByID(db *gorm.DB, id int) (*models.Order, error) {
 	return order, nil
 }
 
-func GetAllOrders(db *gorm.DB) ([]models.Order, error) {
+func (or *orderRepository) GetAllOrders() ([]models.Order, error) {
 	var orders []models.Order
-	err := db.Find(&orders).Error
+	err := or.db.Find(&orders).Error
 
 	if err != nil {
 		return nil, err

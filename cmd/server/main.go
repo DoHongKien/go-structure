@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/DoHongKien/go-structure/internal/router"
-)
+import "github.com/DoHongKien/go-structure/internal/router"
 
 func main() {
 
