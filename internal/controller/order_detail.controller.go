@@ -20,28 +20,35 @@ func NewOrderDetailController(orderDetailService service.IOrderDetailService) *O
 }
 
 func (c *OrderDetailController) SaveOrderDetail(ctx *gin.Context) {
-	var orderDetail *models.OrderDetail
+	var orderDetail models.OrderDetail
 
 	if err := ctx.ShouldBindJSON(&orderDetail); err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
+		return
 	}
 
-	orderDetailResponse, err := c.orderDetailService.SaveOrderDetail(orderDetail)
+	orderDetailResponse, err := c.orderDetailService.SaveOrderDetail(&orderDetail)
 	if err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
+		return
 	}
+
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, orderDetailResponse)
 }
 
 func (c *OrderDetailController) GetOrderDetail(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, "Invalid ID format")
+		return
 	}
+
 	orderDetail, err := c.orderDetailService.GetOrderDetail(id)
 	if err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
+		return
 	}
+
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, orderDetail)
 }
 
@@ -49,6 +56,8 @@ func (c *OrderDetailController) GetAllOrderDetails(ctx *gin.Context) {
 	orderDetails, err := c.orderDetailService.GetAllOrderDetails()
 	if err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
+		return
 	}
+
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, orderDetails)
 }

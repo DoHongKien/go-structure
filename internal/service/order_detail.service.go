@@ -6,6 +6,7 @@ import (
 	"github.com/DoHongKien/go-structure/internal/repo"
 )
 
+// IOrderDetailService defines operations for order detail service
 type IOrderDetailService interface {
 	SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error)
 	GetOrderDetail(id int) (*models.OrderDetail, error)
@@ -13,32 +14,34 @@ type IOrderDetailService interface {
 	OrderDetailJoin() ([]dto.OrderJoin, error)
 }
 
+// orderDetailService implements IOrderDetailService
 type orderDetailService struct {
 	repository repo.IOrderDetailRepository
 }
 
+// NewOrderDetailService creates a new order detail service instance
 func NewOrderDetailService(orderDetailRepo repo.IOrderDetailRepository) IOrderDetailService {
 	return &orderDetailService{
 		repository: orderDetailRepo,
 	}
 }
 
-// GetAllOrderDetails implements IOrderDetailService.
-func (o *orderDetailService) GetAllOrderDetails() ([]models.OrderDetail, error) {
-	return o.repository.GetAllOrderDetails()
+// SaveOrderDetail persists an order detail to storage
+func (o *orderDetailService) SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
+	return o.repository.SaveOrderDetail(orderDetail)
 }
 
-// GetOrderDetail implements IOrderDetailService.
+// GetOrderDetail retrieves an order detail by ID
 func (o *orderDetailService) GetOrderDetail(id int) (*models.OrderDetail, error) {
 	return o.repository.GetOrderDetail(id)
 }
 
-// OrderDetailJoin implements IOrderDetailService.
-func (o *orderDetailService) OrderDetailJoin() ([]dto.OrderJoin, error) {
-	return o.repository.OrderDetailJoin()
+// GetAllOrderDetails retrieves all order details
+func (o *orderDetailService) GetAllOrderDetails() ([]models.OrderDetail, error) {
+	return o.repository.GetAllOrderDetails()
 }
 
-// SaveOrderDetail implements IOrderDetailService.
-func (o *orderDetailService) SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
-	return o.repository.SaveOrderDetail(orderDetail)
+// OrderDetailJoin retrieves order details with joined data
+func (o *orderDetailService) OrderDetailJoin() ([]dto.OrderJoin, error) {
+	return o.repository.OrderDetailJoin()
 }

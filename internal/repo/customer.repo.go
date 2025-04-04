@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// ICustomerRepository defines the contract for customer data operations
 type ICustomerRepository interface {
 	GetAllCustomers(limit, offset int) ([]models.Customer, error)
 	GetCustomerByID(id int) (*models.Customer, error)
@@ -17,36 +18,48 @@ type customerRepository struct {
 	db *gorm.DB
 }
 
+// NewCustomerRepository creates a new customer repository instance
 func NewCustomerRepository() ICustomerRepository {
-	return &customerRepository{db: global.Mdb}
+	return &customerRepository{
+		db: global.Mdb,
+	}
 }
 
+// GetAllCustomers retrieves customers with pagination
 func (r *customerRepository) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
 	var customers []models.Customer
-	err := r.db.Limit(limit).Offset(offset).Find(&customers).Error
-	if err != nil {
-		return nil, err
+
+	result := r.db.
+		Limit(limit).
+		Offset(offset).
+		Find(&customers)
+
+	if result.Error != nil {
+		return nil, result.Error
 	}
 
 	return customers, nil
 }
 
+// GetCustomerByID retrieves a single customer by ID
 func (r *customerRepository) GetCustomerByID(id int) (*models.Customer, error) {
 	var customer models.Customer
-	err := r.db.First(&customer, id).Error
-	if err != nil {
+
+	if err := r.db.First(&customer, id).Error; err != nil {
 		return nil, err
 	}
 
 	return &customer, nil
 }
 
+// GetRawQueryCustomer retrieves specific customer fields using raw SQL
 func (r *customerRepository) GetRawQueryCustomer(id int) (*dto.CustomerRaw, error) {
-	var customerRaws dto.CustomerRaw
-	err := r.db.Raw("SELECT username, email FROM customer WHERE id = ?", id).Scan(&customerRaws).Error
-	if err != nil {
+	var customerData dto.CustomerRaw
+
+	query := "SELECT username, email FROM customer WHERE id = ?"
+	if err := r.db.Raw(query, id).Scan(&customerData).Error; err != nil {
 		return nil, err
 	}
 
-	return &customerRaws, nil
+	return &customerData, nil
 }

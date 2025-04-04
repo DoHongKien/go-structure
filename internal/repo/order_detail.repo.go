@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// IOrderDetailRepository defines order detail repository operations
 type IOrderDetailRepository interface {
 	SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error)
 	GetOrderDetail(id int) (*models.OrderDetail, error)
@@ -14,59 +15,53 @@ type IOrderDetailRepository interface {
 	OrderDetailJoin() ([]dto.OrderJoin, error)
 }
 
+// orderDetailRepository implements IOrderDetailRepository
 type orderDetailRepository struct {
 	db *gorm.DB
 }
 
+// NewOrderDetailRepository creates a new order detail repository
 func NewOrderDetailRepository() IOrderDetailRepository {
 	return &orderDetailRepository{
 		db: global.Mdb,
 	}
 }
 
-// GetAllOrderDetails implements IOrderDetailRepository.
-func (o *orderDetailRepository) GetAllOrderDetails() ([]models.OrderDetail, error) {
-	var orderDetails []models.OrderDetail
-	err := o.db.Preload("Order").Find(&orderDetails).Error
-
-	if err != nil {
+// SaveOrderDetail creates a new order detail record
+func (o *orderDetailRepository) SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
+	if err := o.db.Create(orderDetail).Error; err != nil {
 		return nil, err
 	}
-
-	return orderDetails, nil
+	return orderDetail, nil
 }
 
-// GetOrderDetail implements IOrderDetailRepository.
+// GetOrderDetail retrieves an order detail by ID
 func (o *orderDetailRepository) GetOrderDetail(id int) (*models.OrderDetail, error) {
 	orderDetail := &models.OrderDetail{}
-	err := o.db.First(orderDetail, id).Error
-
-	if err != nil {
+	if err := o.db.First(orderDetail, id).Error; err != nil {
 		return nil, err
 	}
-
 	return orderDetail, nil
 }
 
-// OrderDetailJoin implements IOrderDetailRepository.
-func (o *orderDetailRepository) OrderDetailJoin() ([]dto.OrderJoin, error) {
-	var orderDetails []dto.OrderJoin
-	err := o.db.Table("order_detail od").Select("o.id as order_id, o.code, od.price, od.product_name as product_name, od.quantity").Joins("JOIN orders o ON o.id = od.order_id").Scan(&orderDetails).Error
-
-	if err != nil {
+// GetAllOrderDetails retrieves all order details with their orders
+func (o *orderDetailRepository) GetAllOrderDetails() ([]models.OrderDetail, error) {
+	var orderDetails []models.OrderDetail
+	if err := o.db.Preload("Order").Find(&orderDetails).Error; err != nil {
 		return nil, err
 	}
-
 	return orderDetails, nil
 }
 
-// SaveOrderDetail implements IOrderDetailRepository.
-func (o *orderDetailRepository) SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
-	err := o.db.Create(orderDetail).Error
-
-	if err != nil {
+// OrderDetailJoin retrieves joined order details data
+func (o *orderDetailRepository) OrderDetailJoin() ([]dto.OrderJoin, error) {
+	var orderDetails []dto.OrderJoin
+	query := o.db.Table("order_detail od").
+		Select("o.id as order_id, o.code, od.price, od.product_name as product_name, od.quantity").
+		Joins("JOIN orders o ON o.id = od.order_id")
+	
+	if err := query.Scan(&orderDetails).Error; err != nil {
 		return nil, err
 	}
-
-	return orderDetail, nil
+	return orderDetails, nil
 }

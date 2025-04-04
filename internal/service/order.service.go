@@ -5,6 +5,7 @@ import (
 	"github.com/DoHongKien/go-structure/internal/repo"
 )
 
+// IOrderService defines operations for handling orders
 type IOrderService interface {
 	CreateOrder(order *models.Order) (*models.Order, error)
 	GetOrderByID(id int) (*models.Order, error)
@@ -12,23 +13,22 @@ type IOrderService interface {
 }
 
 type orderService struct {
-	orderRepository repo.IOrderRepository
+	repo repo.IOrderRepository
 }
 
-func NewOrderService(orderRepository repo.IOrderRepository) IOrderService {
-	return &orderService{
-		orderRepository: orderRepository,
-	}
+// NewOrderService creates a new order service instance
+func NewOrderService(repo repo.IOrderRepository) IOrderService {
+	return &orderService{repo: repo}
 }
 
-func (os *orderService) CreateOrder(order *models.Order) (*models.Order, error) {
-	return os.orderRepository.SaveOrder(order)
+func (s *orderService) CreateOrder(order *models.Order) (*models.Order, error) {
+	return s.repo.SaveOrder(order)
 }
 
-func (os *orderService) GetOrderByID(id int) (*models.Order, error) {
-	return os.orderRepository.GetOrderByID(id)
+func (s *orderService) GetOrderByID(id int) (*models.Order, error) {
+	return s.repo.GetOrderByID(id)
 }
 
-func (os *orderService) GetAllOrders() ([]models.Order, error) {
-	return os.orderRepository.GetAllOrders()
+func (s *orderService) GetAllOrders() ([]models.Order, error) {
+	return s.repo.GetAllOrders()
 }
