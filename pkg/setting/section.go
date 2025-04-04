@@ -24,7 +24,7 @@ type MysqlSetting struct {
 }
 
 type LoggerSetting struct {
-	LogLevel    string `mapstructure:"debug"`
+	LogLevel    string `mapstructure:"log_level"`
 	FileLogName string `mapstructure:"file_log_name"`
 	MaxBackups  int    `mapstructure:"max_backups"`
 	MaxAge      int    `mapstructure:"max_age"`

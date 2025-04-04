@@ -52,7 +52,7 @@ func getEncoderLog() zapcore.Encoder {
 	encodeConfig := zap.NewProductionEncoderConfig()
 
 	encodeConfig.EncodeTime = zapcore.ISO8601TimeEncoder
-	encodeConfig.TimeKey = "Time"
+	encodeConfig.TimeKey = "time"
 	encodeConfig.EncodeLevel = zapcore.CapitalLevelEncoder
 	encodeConfig.EncodeCaller = zapcore.ShortCallerEncoder
 	return zapcore.NewJSONEncoder(encodeConfig)

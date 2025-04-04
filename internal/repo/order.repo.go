@@ -1,6 +1,8 @@
 package repo
 
 import (
+	"fmt"
+
 	"github.com/DoHongKien/go-structure/global"
 	"github.com/DoHongKien/go-structure/internal/models"
 	"gorm.io/gorm"
@@ -34,6 +36,7 @@ func (or *orderRepository) GetOrderByID(id int) (*models.Order, error) {
 	err := or.db.First(order, id).Error
 
 	if err != nil {
+		global.Logger.Error(fmt.Sprintf("Error getting order by ID %d: %v", id, err))
 		return nil, err
 	}
 
