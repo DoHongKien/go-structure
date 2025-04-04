@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"github.com/DoHongKien/go-structure/global"
 	"github.com/DoHongKien/go-structure/internal/models"
 	"github.com/DoHongKien/go-structure/internal/models/dto"
 	"gorm.io/gorm"
@@ -17,9 +18,9 @@ type orderDetailRepository struct {
 	db *gorm.DB
 }
 
-func NewOrderDetailRepository(db *gorm.DB) IOrderDetailRepository {
+func NewOrderDetailRepository() IOrderDetailRepository {
 	return &orderDetailRepository{
-		db: db,
+		db: global.Mdb,
 	}
 }
 
@@ -69,46 +70,3 @@ func (o *orderDetailRepository) SaveOrderDetail(orderDetail *models.OrderDetail)
 
 	return orderDetail, nil
 }
-
-// func SaveOrderDetail(db *gorm.DB, orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
-// 	err := db.Create(orderDetail).Error
-
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return orderDetail, nil
-// }
-
-// func GetOrderDetail(db *gorm.DB, id int) (*models.OrderDetail, error) {
-// 	orderDetail := &models.OrderDetail{}
-// 	err := db.First(orderDetail, id).Error
-
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return orderDetail, nil
-// }
-
-// func GetAllOrderDetails(db *gorm.DB) ([]models.OrderDetail, error) {
-// 	var orderDetails []models.OrderDetail
-// 	err := db.Preload("Order").Find(&orderDetails).Error
-
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return orderDetails, nil
-// }
-
-// func OrderDetailJoin(db *gorm.DB) ([]dto.OrderJoin, error) {
-// 	var orderDetails []dto.OrderJoin
-// 	err := db.Table("order_detail od").Select("o.id as order_id, o.code, od.price, od.product_name as product_name, od.quantity").Joins("JOIN orders o ON o.id = od.order_id").Scan(&orderDetails).Error
-
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return orderDetails, nil
-// }

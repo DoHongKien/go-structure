@@ -1,0 +1,3 @@
+{"level":"INFO","Time":"2025-04-04T10:27:51.855+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","Time":"2025-04-04T10:27:51.899+0700","caller":"initialize/init_msql.go:29","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","Time":"2025-04-04T10:30:06.452+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}

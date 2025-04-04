@@ -30,7 +30,7 @@ func (c *CustomerController) GetAllCustomers(ctx *gin.Context) {
 
 	customers, err := c.customerService.GetAllCustomers(limit, (offset-1)*limit)
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 	}
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, customers)
 }
@@ -38,12 +38,12 @@ func (c *CustomerController) GetAllCustomers(ctx *gin.Context) {
 func (c *CustomerController) GetCustomerByID(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 	}
 	customer, err := c.customerService.GetCustomerByID(id)
 
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 	}
 
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, customer)
@@ -53,13 +53,13 @@ func (c *CustomerController) GetRawQueryCustomer(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 	}
 
 	customer, err := c.customerService.GetRawQueryCustomer(id)
 
 	if err != nil {
-		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, err.Error())
+		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 	}
 
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, customer)

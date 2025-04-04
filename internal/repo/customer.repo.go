@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"github.com/DoHongKien/go-structure/global"
 	"github.com/DoHongKien/go-structure/internal/models"
 	"github.com/DoHongKien/go-structure/internal/models/dto"
 	"gorm.io/gorm"
@@ -16,8 +17,8 @@ type customerRepository struct {
 	db *gorm.DB
 }
 
-func NewCustomerRepository(db *gorm.DB) ICustomerRepository {
-	return &customerRepository{db: db}
+func NewCustomerRepository() ICustomerRepository {
+	return &customerRepository{db: global.Mdb}
 }
 
 func (r *customerRepository) GetAllCustomers(limit, offset int) ([]models.Customer, error) {

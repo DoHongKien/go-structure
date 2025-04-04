@@ -1,10 +1,12 @@
 package main
 
-import "github.com/DoHongKien/go-structure/internal/router"
+import (
+	"github.com/DoHongKien/go-structure/internal/initialize"
+)
 
 func main() {
 
-	r := router.NewRouter()
+	r := initialize.Run()
 
 	r.Run(":9999")
 }

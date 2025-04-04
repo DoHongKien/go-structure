@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"github.com/DoHongKien/go-structure/global"
 	"github.com/DoHongKien/go-structure/internal/models"
 	"gorm.io/gorm"
 )
@@ -15,8 +16,8 @@ type orderRepository struct {
 	db *gorm.DB
 }
 
-func NewOrderRepository(db *gorm.DB) IOrderRepository {
-	return &orderRepository{db: db}
+func NewOrderRepository() IOrderRepository {
+	return &orderRepository{db: global.Mdb}
 }
 
 func (or *orderRepository) SaveOrder(order *models.Order) (*models.Order, error) {
