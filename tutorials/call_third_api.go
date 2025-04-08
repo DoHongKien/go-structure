@@ -86,7 +86,7 @@ func (ac *apiClient) getHi(token string) (string, error) {
 	return string(bodyBytes), nil
 }
 
-func main() {
+func main1() {
 	client := newAPIClient(10 * time.Second)
 	
 	// Login

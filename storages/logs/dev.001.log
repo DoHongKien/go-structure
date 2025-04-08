@@ -34,3 +34,60 @@
 {"level":"INFO","time":"2025-04-08T08:14:31.790+0700","caller":"initialize/init_msql.go:29","msg":"Initializing MySQL Successfully"}
 {"level":"INFO","time":"2025-04-08T08:30:14.485+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
 {"level":"INFO","time":"2025-04-08T08:30:14.511+0700","caller":"initialize/init_msql.go:29","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T08:56:30.845+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T08:56:30.864+0700","caller":"initialize/init_msql.go:30","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T08:56:30.932+0700","caller":"initialize/init_msql.go:60","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T08:57:50.511+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T08:57:50.525+0700","caller":"initialize/init_msql.go:30","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T08:57:50.548+0700","caller":"initialize/init_msql.go:60","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T09:12:06.706+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T09:12:06.722+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T09:12:07.030+0700","caller":"initialize/init_msql.go:59","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T09:17:44.280+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T09:17:44.295+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T09:17:44.661+0700","caller":"initialize/init_msql.go:59","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T09:45:03.798+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T09:45:03.816+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T09:45:04.100+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T09:45:54.551+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T09:45:54.564+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T09:45:54.858+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T09:47:44.014+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T09:47:44.029+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T09:47:44.332+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T10:09:20.151+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T10:09:20.173+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T10:09:20.537+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T10:09:36.208+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T10:09:36.225+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T10:09:36.514+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T10:10:00.885+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T10:10:00.899+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T10:10:01.295+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T11:27:25.860+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T11:27:25.885+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T11:27:26.207+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T11:35:26.515+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T11:35:26.534+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T11:35:26.846+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:45:16.703+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:45:16.720+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:45:17.183+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:48:19.072+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:48:19.089+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:48:19.405+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:52:35.086+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:52:35.101+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:52:35.431+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:53:23.387+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:53:23.405+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:53:23.719+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:55:15.513+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:55:15.528+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:55:15.858+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T13:56:44.147+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T13:56:44.161+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T13:56:44.533+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-04-08T16:39:59.980+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-04-08T16:40:00.048+0700","caller":"initialize/init_msql.go:31","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-04-08T16:40:00.478+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}

@@ -3,7 +3,7 @@ package controller
 import (
 	"strconv"
 
-	"github.com/DoHongKien/go-structure/internal/models"
+	"github.com/DoHongKien/go-structure/internal/model"
 	"github.com/DoHongKien/go-structure/internal/service"
 	"github.com/DoHongKien/go-structure/pkg/response"
 	"github.com/gin-gonic/gin"
@@ -19,8 +19,18 @@ func NewOrderController(service service.IOrderService) *OrderController {
 	}
 }
 
+// CreateOrder godoc
+// @Summary Create a new order
+// @Description Create a new order with the provided details
+// @Tags OrderController
+// @Accept json
+// @Produce json
+// @Param order body model.Order true "Order details"
+// @Success 200 {object} response.ResponseData
+// @Failure 500 {object} response.ErrorResponseData
+// @Router /orders [post]
 func (c *OrderController) CreateOrder(ctx *gin.Context) {
-	var order models.Order
+	var order model.Order
 	if err := ctx.ShouldBindJSON(&order); err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 		return
@@ -41,13 +51,13 @@ func (c *OrderController) GetOrderByID(ctx *gin.Context) {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 		return
 	}
-	
+
 	order, err := c.service.GetOrderByID(id)
 	if err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())
 		return
 	}
-	
+
 	response.SuccessResponse(ctx, response.ErrCodeSuccess, order)
 }
 

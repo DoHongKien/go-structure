@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"math/rand/v2"
 	"sync"
+	"time"
 )
 
 func Channel() {
@@ -42,4 +44,32 @@ func Mutex() {
 
 	wg.Wait()
 	fmt.Println("Final counter value with Mutex:", counter)
+}
+
+func downloadFile(url string, ch chan string) {
+	// Random duration between 1 and 3 seconds
+	duration := time.Duration(rand.IntN(3) + 1) * time.Second
+
+	time.Sleep(duration)
+	ch <- fmt.Sprintf("Downloaded %s in %v seconds", url, duration.Seconds())
+}
+
+func main() {
+	fileUrls := []string{}
+	for i := 1; i <= 1000; i++ {
+		fileUrls = append(fileUrls, fmt.Sprintf("file%d.txt", i))
+	}
+
+	ch := make(chan string)
+
+	for _, url := range fileUrls {
+		go downloadFile(url, ch)
+	}
+
+	for range fileUrls {
+		result := <-ch
+		fmt.Println(result)
+	}
+
+	fmt.Println("🎉 All files downloaded")
 }

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/DoHongKien/go-structure/internal/models"
+	"github.com/DoHongKien/go-structure/internal/model"
 )
 
 type CustomerResponse struct {
@@ -13,7 +13,7 @@ type CustomerResponse struct {
 	Active   string `json:"active"`
 }
 
-func MapCustomer(customer models.Customer) *CustomerResponse {
+func MapCustomer(customer model.Customer) *CustomerResponse {
 	return &CustomerResponse{
 		ID:       customer.ID,
 		FullName: customer.FullName,

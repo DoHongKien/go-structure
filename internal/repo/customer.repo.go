@@ -2,15 +2,15 @@ package repo
 
 import (
 	"github.com/DoHongKien/go-structure/global"
-	"github.com/DoHongKien/go-structure/internal/models"
-	"github.com/DoHongKien/go-structure/internal/models/dto"
+	"github.com/DoHongKien/go-structure/internal/model"
+	"github.com/DoHongKien/go-structure/internal/model/dto"
 	"gorm.io/gorm"
 )
 
 // ICustomerRepository defines the contract for customer data operations
 type ICustomerRepository interface {
-	GetAllCustomers(limit, offset int) ([]models.Customer, error)
-	GetCustomerByID(id int) (*models.Customer, error)
+	GetAllCustomers(limit, offset int) ([]model.Customer, error)
+	GetCustomerByID(id int) (*model.Customer, error)
 	GetRawQueryCustomer(id int) (*dto.CustomerRaw, error)
 }
 
@@ -26,8 +26,8 @@ func NewCustomerRepository() ICustomerRepository {
 }
 
 // GetAllCustomers retrieves customers with pagination
-func (r *customerRepository) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
-	var customers []models.Customer
+func (r *customerRepository) GetAllCustomers(limit, offset int) ([]model.Customer, error) {
+	var customers []model.Customer
 
 	result := r.db.
 		Limit(limit).
@@ -42,8 +42,8 @@ func (r *customerRepository) GetAllCustomers(limit, offset int) ([]models.Custom
 }
 
 // GetCustomerByID retrieves a single customer by ID
-func (r *customerRepository) GetCustomerByID(id int) (*models.Customer, error) {
-	var customer models.Customer
+func (r *customerRepository) GetCustomerByID(id int) (*model.Customer, error) {
+	var customer model.Customer
 
 	if err := r.db.First(&customer, id).Error; err != nil {
 		return nil, err

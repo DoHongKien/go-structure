@@ -1,6 +1,6 @@
-package models
+package model
 
-type Customer struct {
+type Customerv1 struct {
 	ID       int    `gorm:"primaryKey;column:id"`
 	Username string `gorm:"column:username"`
 	FullName string `gorm:"column:full_name"`
@@ -11,6 +11,6 @@ type Customer struct {
 }
 
 // TableName overrides the default table name used by GORM for the Customer model.
-func (Customer) TableName() string {
-	return "customer"
+func (Customerv1) TableName() string {
+	return "customerv1"
 }

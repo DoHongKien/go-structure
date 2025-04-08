@@ -1,16 +1,16 @@
 package service
 
 import (
-	"github.com/DoHongKien/go-structure/internal/models"
-	"github.com/DoHongKien/go-structure/internal/models/dto"
+	"github.com/DoHongKien/go-structure/internal/model"
+	"github.com/DoHongKien/go-structure/internal/model/dto"
 	"github.com/DoHongKien/go-structure/internal/repo"
 )
 
 // IOrderDetailService defines operations for order detail service
 type IOrderDetailService interface {
-	SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error)
-	GetOrderDetail(id int) (*models.OrderDetail, error)
-	GetAllOrderDetails() ([]models.OrderDetail, error)
+	SaveOrderDetail(orderDetail *model.OrderDetail) (*model.OrderDetail, error)
+	GetOrderDetail(id int) (*model.OrderDetail, error)
+	GetAllOrderDetails() ([]model.OrderDetail, error)
 	OrderDetailJoin() ([]dto.OrderJoin, error)
 }
 
@@ -27,17 +27,17 @@ func NewOrderDetailService(orderDetailRepo repo.IOrderDetailRepository) IOrderDe
 }
 
 // SaveOrderDetail persists an order detail to storage
-func (o *orderDetailService) SaveOrderDetail(orderDetail *models.OrderDetail) (*models.OrderDetail, error) {
+func (o *orderDetailService) SaveOrderDetail(orderDetail *model.OrderDetail) (*model.OrderDetail, error) {
 	return o.repository.SaveOrderDetail(orderDetail)
 }
 
 // GetOrderDetail retrieves an order detail by ID
-func (o *orderDetailService) GetOrderDetail(id int) (*models.OrderDetail, error) {
+func (o *orderDetailService) GetOrderDetail(id int) (*model.OrderDetail, error) {
 	return o.repository.GetOrderDetail(id)
 }
 
 // GetAllOrderDetails retrieves all order details
-func (o *orderDetailService) GetAllOrderDetails() ([]models.OrderDetail, error) {
+func (o *orderDetailService) GetAllOrderDetails() ([]model.OrderDetail, error) {
 	return o.repository.GetAllOrderDetails()
 }
 

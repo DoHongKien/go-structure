@@ -5,8 +5,10 @@ import (
 	"time"
 
 	"github.com/DoHongKien/go-structure/global"
+	"github.com/DoHongKien/go-structure/internal/model"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
+	"gorm.io/gen"
 	"gorm.io/gorm"
 )
 
@@ -31,8 +33,8 @@ func InitMysql() {
 
 	// set Pool
 	SetPool()
-	// genTableDAO()
-	// migrateTables()
+	genTableDAO()
+	migrateTables()
 }
 
 func SetPool() {
@@ -44,4 +46,31 @@ func SetPool() {
 	sqlDb.SetConnMaxIdleTime(time.Duration(m.MaxIdleConns))
 	sqlDb.SetMaxOpenConns(m.MaxOpenConns)
 	sqlDb.SetConnMaxLifetime(time.Duration(m.ConnMaxLifetime))
+}
+
+// auto create table in mysql
+// refer https://gorm.io/docs/migration.html#AutoMigrate
+func migrateTables() {
+	err := global.Mdb.AutoMigrate(
+		&model.Customerv1{},
+	)
+
+	if err != nil {
+		global.Logger.Error("mysql auto migrate error", zap.Error(err))
+	} else {
+		global.Logger.Info("mysql auto migrate success")
+	}
+}
+
+// generate table in mysql to go struct
+func genTableDAO() {
+	g := gen.NewGenerator(gen.Config{
+		OutPath: "./internal/model",
+		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface,
+	})
+
+	g.UseDB(global.Mdb)
+	g.GenerateModel("test_gen_mysql_to_go")
+
+	g.Execute()
 }

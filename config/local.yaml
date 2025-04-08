@@ -17,6 +17,11 @@ logger:
   max_age: 7
   max_size: 1024
   compress: true
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password:
+  db: 0
 jwt:
   secret_key: hNsdQK8zfPFpnSnnqTmqX5aI94c3Npd/QdkkvQhHLI+q0VOpe1AJk9NEMgC8awfy
   expire_time: 3600

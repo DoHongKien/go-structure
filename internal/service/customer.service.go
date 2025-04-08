@@ -1,15 +1,15 @@
 package service
 
 import (
-	"github.com/DoHongKien/go-structure/internal/models"
-	"github.com/DoHongKien/go-structure/internal/models/dto"
+	"github.com/DoHongKien/go-structure/internal/model"
+	"github.com/DoHongKien/go-structure/internal/model/dto"
 	"github.com/DoHongKien/go-structure/internal/repo"
 )
 
 // ICustomerService defines the interface for customer-related operations
 type ICustomerService interface {
-	GetAllCustomers(limit, offset int) ([]models.Customer, error)
-	GetCustomerByID(id int) (*models.Customer, error)
+	GetAllCustomers(limit, offset int) ([]model.Customer, error)
+	GetCustomerByID(id int) (*model.Customer, error)
 	GetRawQueryCustomer(id int) (*dto.CustomerRaw, error)
 }
 
@@ -24,12 +24,12 @@ func NewCustomerService(repo repo.ICustomerRepository) ICustomerService {
 }
 
 // GetAllCustomers retrieves all customers with pagination
-func (s *customerService) GetAllCustomers(limit, offset int) ([]models.Customer, error) {
+func (s *customerService) GetAllCustomers(limit, offset int) ([]model.Customer, error) {
 	return s.repo.GetAllCustomers(limit, offset)
 }
 
 // GetCustomerByID retrieves a customer by their ID
-func (s *customerService) GetCustomerByID(id int) (*models.Customer, error) {
+func (s *customerService) GetCustomerByID(id int) (*model.Customer, error) {
 	return s.repo.GetCustomerByID(id)
 }
 

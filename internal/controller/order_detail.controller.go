@@ -3,7 +3,7 @@ package controller
 import (
 	"strconv"
 
-	"github.com/DoHongKien/go-structure/internal/models"
+	"github.com/DoHongKien/go-structure/internal/model"
 	"github.com/DoHongKien/go-structure/internal/service"
 	"github.com/DoHongKien/go-structure/pkg/response"
 	"github.com/gin-gonic/gin"
@@ -20,7 +20,7 @@ func NewOrderDetailController(orderDetailService service.IOrderDetailService) *O
 }
 
 func (c *OrderDetailController) SaveOrderDetail(ctx *gin.Context) {
-	var orderDetail models.OrderDetail
+	var orderDetail model.OrderDetail
 
 	if err := ctx.ShouldBindJSON(&orderDetail); err != nil {
 		response.ErrorResponse(ctx, response.ErrCodeFailed, err.Error())

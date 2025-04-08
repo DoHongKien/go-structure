@@ -1,4 +1,6 @@
-package models
+package model
+
+const OrderDetailTableName = "order_detail"
 
 type OrderDetail struct {
 	ID          int     `gorm:"primaryKey;column:id"`
@@ -10,5 +12,5 @@ type OrderDetail struct {
 }
 
 func (OrderDetail) TableName() string {
-	return "order_detail"
+	return OrderDetailTableName
 }
