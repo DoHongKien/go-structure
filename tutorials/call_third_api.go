@@ -31,7 +31,7 @@ func newAPIClient(timeout time.Duration) *apiClient {
 	}
 }
 
-func (a *apiClient) login(username, password string) (*responseLogin, error) {
+func (ac *apiClient) login(username, password string) (*responseLogin, error) {
 	loginPayload := map[string]string{
 		"username": username,
 		"password": password,
@@ -50,7 +50,7 @@ func (a *apiClient) login(username, password string) (*responseLogin, error) {
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Device-Id", "APP")
 
-	resp, err := a.client.Do(req)
+	resp, err := ac.client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending login request: %w", err)
 	}
@@ -64,7 +64,7 @@ func (a *apiClient) login(username, password string) (*responseLogin, error) {
 	return &responseData, nil
 }
 
-func (a *apiClient) getHi(token string) (string, error) {
+func (ac *apiClient) getHi(token string) (string, error) {
 	req, err := http.NewRequest("GET", hiURL, nil)
 	if err != nil {
 		return "", fmt.Errorf("error creating hi request: %w", err)
@@ -72,7 +72,7 @@ func (a *apiClient) getHi(token string) (string, error) {
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
 
-	resp, err := a.client.Do(req)
+	resp, err := ac.client.Do(req)
 	if err != nil {
 		return "", fmt.Errorf("error sending hi request: %w", err)
 	}

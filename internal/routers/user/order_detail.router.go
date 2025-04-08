@@ -1,9 +1,10 @@
 package user
 
 import (
-	"github.com/DoHongKien/go-structure/internal/controller"
-	"github.com/DoHongKien/go-structure/internal/repo"
-	"github.com/DoHongKien/go-structure/internal/service"
+	"fmt"
+
+	"github.com/DoHongKien/go-structure/global"
+	"github.com/DoHongKien/go-structure/internal/wire"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,9 +12,13 @@ type OrderDetailRouter struct{}
 
 func (od *OrderDetailRouter) InitOrderDetailRouter(Router *gin.RouterGroup) {
 
-	orderDetailRepository := repo.NewOrderDetailRepository()
-	orderDetailService := service.NewOrderDetailService(orderDetailRepository)
-	orderDetailController := controller.NewOrderDetailController(orderDetailService)
+	// orderDetailRepository := repo.NewOrderDetailRepository()
+	// orderDetailService := service.NewOrderDetailService(orderDetailRepository)
+	orderDetailController, err := wire.InitOrderDetailRouterHandler()
+
+	if err != nil {
+		global.Logger.Error(fmt.Sprintf("Failed to initialize order detail router handler: %v", err))
+	}
 
 	orderDetailRouter := Router.Group("/order-detail")
 	{
