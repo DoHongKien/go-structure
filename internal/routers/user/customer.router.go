@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/DoHongKien/go-structure/global"
+	"github.com/DoHongKien/go-structure/internal/middlewares"
 	"github.com/DoHongKien/go-structure/internal/wire"
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +22,7 @@ func (cr *CustomerRouter) InitCustomerRouter(Router *gin.RouterGroup) {
 	}
 
 	customerRouter := Router.Group("/customer")
+	customerRouter.Use(middlewares.NewRateLimiter().PublicAPIRateLimiter())
 	{
 		customerRouter.GET("/", customerController.GetAllCustomers)
 		customerRouter.GET("/:id", customerController.GetCustomerByID)

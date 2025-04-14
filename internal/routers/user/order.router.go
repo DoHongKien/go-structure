@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/DoHongKien/go-structure/global"
+	"github.com/DoHongKien/go-structure/internal/middlewares"
 	"github.com/DoHongKien/go-structure/internal/wire"
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +22,7 @@ func (or *OrderRouter) InitOrderRouter(Router *gin.RouterGroup) {
 	}
 
 	orderRouter := Router.Group("/order")
+	orderRouter.Use(middlewares.NewRateLimiter().PublicAPIRateLimiter())
 	{
 		orderRouter.GET("/", orderController.GetAllOrders)
 		orderRouter.GET("/:id", orderController.GetOrderByID)

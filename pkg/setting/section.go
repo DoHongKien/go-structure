@@ -3,6 +3,7 @@ package setting
 type Config struct {
 	Server ServerSetting `mapstructure:"server"`
 	Mysql  MysqlSetting  `mapstructure:"mysql"`
+	Redis  RedisSetting  `mapstructure:"redis"`
 	Logger LoggerSetting `mapstructure:"logger"`
 	JWT    JWTSetting    `mapstructure:"jwt"`
 }
@@ -23,6 +24,13 @@ type MysqlSetting struct {
 	ConnMaxLifetime int    `mapstructure:"connMaxLifetime"`
 }
 
+type RedisSetting struct {
+	Host     string `mapstructure:"host"`
+	Port     int `mapstructure:"port"`
+	Password string `mapstructure:"password"`
+	DB       int `mapstructure:"db"`
+}
+
 type LoggerSetting struct {
 	LogLevel    string `mapstructure:"log_level"`
 	FileLogName string `mapstructure:"file_log_name"`
@@ -34,5 +42,6 @@ type LoggerSetting struct {
 
 type JWTSetting struct {
 	SecretKey  string `mapstructure:"secret_key"`
-	ExpireTime int    `mapstructure:"expire_time"`
+	ExpireTime string    `mapstructure:"expire_time"`
+	RefreshTime string `mapstructure:"refresh_time"`
 }

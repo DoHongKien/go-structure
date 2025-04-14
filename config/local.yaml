@@ -19,9 +19,10 @@ logger:
   compress: true
 redis:
   host: 127.0.0.1
-  port: 6379
+  port: 6331
   password:
   db: 0
 jwt:
   secret_key: hNsdQK8zfPFpnSnnqTmqX5aI94c3Npd/QdkkvQhHLI+q0VOpe1AJk9NEMgC8awfy
-  expire_time: 3600
+  expire_time: 1h
+  refresh_time: 24h

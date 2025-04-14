@@ -12,6 +12,15 @@ import (
 	"github.com/DoHongKien/go-structure/internal/service"
 )
 
+// Injectors from auth.wire.go:
+
+func InitAuthRouterHandler() (*controller.AuthController, error) {
+	iUserRepo := repo.NewAuthRepository()
+	iAuthService := service.NewAuthService(iUserRepo)
+	authController := controller.NewAuthController(iAuthService)
+	return authController, nil
+}
+
 // Injectors from customer.wire.go:
 
 func InitCustomerRouterHandler() (*controller.CustomerController, error) {

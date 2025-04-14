@@ -1,4 +1,4 @@
-//go:build wireinject
+//go::build wireinject
 // +build wireinject
 
 package wire
@@ -10,13 +10,11 @@ import (
 	"github.com/google/wire"
 )
 
-func InitCustomerRouterHandler() (*controller.CustomerController, error) {
-
+func InitAuthRouterHandler() (*controller.AuthController, error) {
 	wire.Build(
-		repo.NewCustomerRepository,
-		service.NewCustomerService,
-		controller.NewCustomerController,
+		repo.NewAuthRepository,
+		service.NewAuthService,
+		controller.NewAuthController,
 	)
-
-	return new(controller.CustomerController), nil
+	return new(controller.AuthController), nil
 }

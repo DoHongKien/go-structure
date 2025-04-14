@@ -22,6 +22,7 @@ func InitRouter() *gin.Engine {
 
 	MainGroup := r.Group("/api/v2")
 	{
+		userRouter.InitAuthRouter(MainGroup)         // Initialize the authentication router
 		userRouter.InitCustomerRouter(MainGroup)    // Initialize the customer router
 		userRouter.InitOrderRouter(MainGroup)       // Initialize the order router
 		userRouter.InitOrderDetailRouter(MainGroup) // Initialize the order detail router

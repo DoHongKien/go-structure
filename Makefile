@@ -15,4 +15,7 @@ docker_up:
 
 docker_down:
 	docker-compose -f environment/docker-compose-dev.yml down
-.PHONY: all dev swag docker_up docker_down
+
+wire:
+	cd ./internal/wire && wire
+.PHONY: all dev swag docker_up docker_down wire
