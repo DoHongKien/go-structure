@@ -2,6 +2,7 @@ package initialize
 
 import (
 	"github.com/DoHongKien/go-structure/global"
+	"github.com/DoHongKien/go-structure/internal/middlewares"
 	"github.com/DoHongKien/go-structure/internal/routers"
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +22,7 @@ func InitRouter() *gin.Engine {
 	userRouter := routers.RouterGroupApp.User
 
 	MainGroup := r.Group("/api/v2")
+	MainGroup.Use(middlewares.LoggerMiddleware())
 	{
 		userRouter.InitAuthRouter(MainGroup)         // Initialize the authentication router
 		userRouter.InitCustomerRouter(MainGroup)    // Initialize the customer router

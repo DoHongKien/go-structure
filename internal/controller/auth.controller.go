@@ -38,6 +38,16 @@ func (ac *AuthController) Login(ctx *gin.Context) {
 	}
 }
 
+// @Summary Login and generate token
+// @Description Login and generate token
+// @Tags AuthController
+// @Accept json
+// @Produce json
+// @Param user body dto.UserRequest true "User login request"
+// @Success 200 {object} response.ResponseData "Login response"
+// @Failure 400 {object} response.ErrorResponseData "Bad request"
+// @Failure 500 {object} response.ErrorResponseData "Internal server error"
+// @Router /auth/login [post]
 func (ac *AuthController) LoginGenToken(ctx *gin.Context) {
 	var userRequest dto.UserRequest
 
