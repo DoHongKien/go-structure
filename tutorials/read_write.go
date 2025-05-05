@@ -22,7 +22,8 @@ func WriteFile(filePath string, data []byte) {
 	println("Data written to file:", filePath)
 }
 
-func main2() {
-	WriteFile("output.txt", []byte("Hello, World!"))
-	ReadFile("output.txt")
+func main() {
+	fileName := "output.txt"
+	WriteFile(fileName, []byte("Hello, World!"))
+	ReadFile(fileName)
 }

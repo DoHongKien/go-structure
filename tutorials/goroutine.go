@@ -54,7 +54,7 @@ func downloadFile(url string, ch chan string) {
 	ch <- fmt.Sprintf("Downloaded %s in %v seconds", url, duration.Seconds())
 }
 
-func main() {
+func main2() {
 	fileUrls := []string{}
 	for i := 1; i <= 1000; i++ {
 		fileUrls = append(fileUrls, fmt.Sprintf("file%d.txt", i))
