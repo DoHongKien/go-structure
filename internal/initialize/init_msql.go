@@ -62,6 +62,7 @@ func SetPool() {
 func migrateTables() {
 	err := global.Mdb.AutoMigrate(
 		&model.Customerv1{},
+		&model.Customer{},
 	)
 
 	if err != nil {
