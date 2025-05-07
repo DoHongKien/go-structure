@@ -287,3 +287,7 @@
 {"level":"INFO","time":"2025-05-07T15:08:34.241+0700","caller":"initialize/init_msql.go:61","msg":"mysql auto migrate success"}
 {"level":"ERROR","time":"2025-05-07T15:08:34.310+0700","caller":"initialize/redis.go:26","msg":"Redis initialization error: ","error":"dial tcp 127.0.0.1:6331: connectex: No connection could be made because the target machine actively refused it.","stacktrace":"github.com/DoHongKien/go-structure/internal/initialize.InitRedis\n\tE:/go/go-structure/internal/initialize/redis.go:26\ngithub.com/DoHongKien/go-structure/internal/initialize.Run\n\tE:/go/go-structure/internal/initialize/run.go:19\nmain.main\n\tE:/go/go-structure/cmd/server/main.go:17\nruntime.main\n\tC:/Program Files/Go/src/runtime/proc.go:283"}
 {"level":"INFO","time":"2025-05-07T15:08:34.313+0700","caller":"initialize/redis.go:29","msg":"Initialization redis successfully"}
+{"level":"INFO","time":"2025-05-07T22:12:30.851+0700","caller":"initialize/run.go:17","msg":"Config Log ok!","ok":"success"}
+{"level":"INFO","time":"2025-05-07T22:12:30.883+0700","caller":"initialize/init_msql.go:40","msg":"Initializing MySQL Successfully"}
+{"level":"INFO","time":"2025-05-07T22:12:31.207+0700","caller":"initialize/init_msql.go:70","msg":"mysql auto migrate success"}
+{"level":"INFO","time":"2025-05-07T22:12:31.218+0700","caller":"initialize/redis.go:29","msg":"Initialization redis successfully"}

@@ -31,7 +31,6 @@ func InitMysql() {
 	password := getEnvOrDefault("MYSQL_PASSWORD", m.Password)
 	dbname := getEnvOrDefault("MYSQL_DB", m.Dbname)
 
-	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
 	dsn := "%s:%s@tcp(%s:%v)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 	var s = fmt.Sprintf(dsn, username, password, host, port, dbname)
 	db, err := gorm.Open(mysql.Open(s), &gorm.Config{
@@ -43,7 +42,7 @@ func InitMysql() {
 
 	// set Pool
 	SetPool()
-	genTableDAO()
+	// genTableDAO()
 	migrateTables()
 }
 
