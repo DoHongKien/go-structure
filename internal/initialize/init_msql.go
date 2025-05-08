@@ -63,6 +63,9 @@ func migrateTables() {
 	err := global.Mdb.AutoMigrate(
 		&model.Customerv1{},
 		&model.Customer{},
+		&model.Order{},
+		&model.OrderDetail{},
+		&model.User{},
 	)
 
 	if err != nil {
